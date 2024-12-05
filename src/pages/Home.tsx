@@ -1,5 +1,7 @@
-import { Header } from "../components/Header";
-
 export const Home = () => {
-  return <Header />;
+  return (
+    <>
+      <div className="container mx-auto">Home</div>
+    </>
+  );
 };

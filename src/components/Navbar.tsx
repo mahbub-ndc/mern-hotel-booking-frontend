@@ -15,11 +15,11 @@ export const Navbar = () => {
           </Link>
           {isLoggedIn ? (
             <div className="flex gap-5">
-              <Link to={"/my-hotel"}>
-                <span className=" text-white">My Hotel</span>
+              <Link to={"/my-hotels"}>
+                <span className=" text-white">My Hotels</span>
               </Link>
-              <Link to={"/add-hotel"}>
-                <span className=" text-white">Add Hotel</span>
+              <Link to={"/my-bookings"}>
+                <span className=" text-white">My Bookings</span>
               </Link>
               <Link to={"/logout"}>
                 <span className=" text-white">

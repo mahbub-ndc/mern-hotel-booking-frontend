@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from "react-query";
 
 import { toast } from "sonner";
@@ -11,8 +12,10 @@ import HotelType from "../forms/ManageHotelForm/HotelType";
 import ImageSection from "../forms/ManageHotelForm/ImageSection";
 import Guest from "../forms/ManageHotelForm/Guest";
 import Facilities from "../forms/ManageHotelForm/Facilities";
+import { useEffect } from "react";
 
 export type HotelForm = {
+  _id: string;
   name: string;
   city: string;
   country: string;
@@ -26,11 +29,13 @@ export type HotelForm = {
   imageFiles: FileList;
 };
 
-const AddHotel = () => {
+const AddHotel = ({ hotel }: { hotel: any }) => {
   // const {
   //   register,
   //   formState: { errors },
   // } = useForm<HotelForm>();
+
+  console.log("hotel from edit", hotel);
 
   const mutation = useMutation(addMyHotel, {
     onSuccess: () => {
@@ -43,6 +48,12 @@ const AddHotel = () => {
     },
   });
   const methods = useForm<HotelForm>();
+  const { reset } = methods;
+
+  useEffect(() => {
+    reset(hotel);
+  }, [hotel, reset]);
+
   const onSubmit = (data: HotelForm) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(data));

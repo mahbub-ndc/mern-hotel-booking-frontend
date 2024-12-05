@@ -61,7 +61,7 @@ const FormDetails = () => {
           <span className="text-red-500">{errors.description.message}</span>
         )}
       </label>
-      <label className="text-gray-700 text-sm font-semibold">
+      <label className="text-gray-700 text-sm font-semibold flex flex-col">
         Price Per Night
         <input
           type="number"

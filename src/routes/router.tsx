@@ -6,8 +6,11 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 
 import AddHotel from "../pages/AddHotel";
-import { TestForm } from "../pages/TestPage";
+
 import MyHotel from "../pages/MyHotel";
+import EditHotel from "../pages/EditHotel";
+import { Search } from "../pages/Search";
+import HotelDetails from "../pages/HotelDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,16 +31,30 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-hotel",
-        element: <AddHotel />,
+        element: <AddHotel hotel={undefined} />,
       },
       {
-        path: "/my-hotel",
+        path: "/my-hotels",
         element: <MyHotel />,
       },
       {
-        path: "/test",
-        element: <TestForm />,
+        path: "/edit-hotel/:id",
+        element: <EditHotel />,
       },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+
+      {
+        path: "/hotel/:id",
+        element: <HotelDetails />,
+      },
+
+      // {
+      //   path: "/test",
+      //   element: <TestForm />,
+      // },
     ],
   },
 ]);
