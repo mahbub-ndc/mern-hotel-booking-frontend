@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 
 import { toast } from "sonner";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginApi } from "../api/login-api";
 export type LoginFormData = {
   email: string;
@@ -18,13 +18,14 @@ const Login = () => {
   } = useForm<LoginFormData>();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const mutation = useMutation(loginApi, {
     retry: false,
     onSuccess: async () => {
       toast.success("Login successful!");
       await queryClient.invalidateQueries("validateToken");
-      navigate("/");
+      navigate(location.state?.from?.pathname || "/");
     },
 
     onError: (error: Error) => {

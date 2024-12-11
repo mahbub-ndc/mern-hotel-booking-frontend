@@ -13,7 +13,7 @@ export const Navbar = () => {
           <Link to={"/"}>
             <span className="text-2xl text-white">Hotel Booking</span>
           </Link>
-          {isLoggedIn ? (
+          {isLoggedIn && isLoggedIn ? (
             <div className="flex gap-5">
               <Link to={"/my-hotels"}>
                 <span className=" text-white">My Hotels</span>

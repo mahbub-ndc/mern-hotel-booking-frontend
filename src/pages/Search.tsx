@@ -4,26 +4,27 @@ import { SearchContext } from "../contexts/SearchContext";
 import { useQuery } from "react-query";
 import { searchHotels } from "../api/hotelApi";
 import SearchResultsCard from "../components/SearchResultsCard";
+import Pagination from "../components/Pagination";
 
 export const Search = () => {
   const search = useContext(SearchContext);
   const [page, setPage] = useState(1);
 
   const searchParams = {
-    destination: search?.destination,
-    checkIn: search?.checkIn,
-    checkOut: search?.checkOut,
-    adultCount: search?.adultCount,
-    childCount: search?.childCount,
+    destination: search?.destination.toString(),
+    checkIn: search?.checkIn.toISOString,
+    checkOut: search?.checkOut.toISOString,
+    adultCount: search?.adultCount.toString(),
+    childCount: search?.childCount.toString(),
     page: page.toString(),
   };
   const { data: hotelData } = useQuery(["hotel", searchParams], () =>
-    searchHotels({
-      ...searchParams,
-      adultCount: searchParams.adultCount?.toString(),
-      childCount: searchParams.childCount?.toString(),
-    })
+    searchHotels(searchParams)
   );
+
+  if (!hotelData) {
+    return <div className="container mx-auto">Loading...</div>;
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5 container mx-auto py-5">
@@ -74,13 +75,13 @@ export const Search = () => {
         {hotelData?.data.map((hotel: any) => (
           <SearchResultsCard hotel={hotel} />
         ))}
-        {/* <div>
+        <div>
           <Pagination
-            page={hotelData?.pagination.page || 1}
-            pages={hotelData?.pagination.pages || 1}
+            currentPage={hotelData?.currentPage || 1}
+            totalPages={hotelData?.totalPages || 1}
             onPageChange={(page) => setPage(page)}
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

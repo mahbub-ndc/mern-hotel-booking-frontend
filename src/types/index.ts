@@ -26,3 +26,10 @@ export const hotelFacilities = [
   "Spa",
   "Fitness Center",
 ];
+
+export type userType = {
+  id_: string;
+  firsttName: string;
+  lastName: string;
+  email: string;
+};

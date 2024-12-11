@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export const validateToken = async () => {
   const response = await fetch(
     "http://localhost:3000/api/v1/auth/validate-token",
@@ -37,4 +39,14 @@ export const testForm = async (data: FormData) => {
     throw new Error(responseBody.message);
   }
   return response.json();
+};
+
+export const fetchCurrentUser = async (): Promise<any> => {
+  const response = await fetch("http://localhost:3000/api/v1/users/get-user", {
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch current user");
+  }
+  return await response.json();
 };
