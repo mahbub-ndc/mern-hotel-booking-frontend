@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { fetchMyHotels } from "../api/hotelApi";
+
 import { BsBuilding } from "react-icons/bs";
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
+import { fetchMyHotels } from "../api/global-api";
 
 const MyHotel = () => {
   const { data: hotels } = useQuery("data", fetchMyHotels, {
@@ -18,7 +19,7 @@ const MyHotel = () => {
     return <div className="text-center py-5">Loading...</div>;
   }
   return (
-    <div className="container mx-auto py-10">
+    <div className=" container-fluid px-5 md:container mx-auto py-10">
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-2xl font-bold">My Hotels</h1>
         <Link to={"/add-hotel"}>
@@ -28,7 +29,7 @@ const MyHotel = () => {
         </Link>
       </div>
       <div className="grid grid-cols-1 gap-4">
-        {hotels?.data.map((hotel: any) => (
+        {hotels?.data?.map((hotel: any) => (
           <div
             data-testid="hotel-card"
             className="flex flex-col justify-between border border-slate-300 rounded-lg p-8 gap-5"

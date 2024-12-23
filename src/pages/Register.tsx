@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { registerApi } from "../api/register-api";
+
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
+import { registerApi } from "../api/global-api";
 export type RegisterFormData = {
   firstName: string;
   lastName: string;
@@ -41,7 +42,7 @@ const Register = () => {
   return (
     <>
       <form
-        className="container flex flex-col gap-4 w-2/3 mx-auto"
+        className=" container-fluid px-5 md:container flex flex-col gap-4 w-full md:w-2/3  mx-auto"
         onSubmit={onSubmit}
       >
         <h2 className="text-3xl font-semibold py-5">Create Account</h2>
@@ -111,7 +112,7 @@ const Register = () => {
           <input type="submit" />
         </button>
       </form>
-      <div className="container  w-2/3 mt-5 mb-5 ">
+      <div className="md:container container-fluid px-5 w-full  md:w-2/3 mt-5 mb-5 ">
         Already Registered? Please{" "}
         <Link to={"/login"} className="text-blue-600">
           Login

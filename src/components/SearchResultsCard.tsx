@@ -12,7 +12,7 @@ const SearchResultsCard = ({ hotel }: any) => {
           className="w-full h-full object-cover object-center rounded-md"
         />
       </div>
-      <div className="grid grid-rows-[1fr_2fr_1fr]">
+      <div className="grid grid-cols-1 gap-4">
         <div>
           <div className="flex items-center">
             <span className="flex">
@@ -34,7 +34,7 @@ const SearchResultsCard = ({ hotel }: any) => {
           <div className="line-clamp-4">{hotel.description}</div>
         </div>
 
-        <div className="grid grid-cols-2 items-end whitespace-nowrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-end whitespace-nowrap">
           <div className="flex gap-1 items-center">
             {hotel.facilities.slice(0, 3).map((facility: any) => (
               <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
@@ -46,13 +46,11 @@ const SearchResultsCard = ({ hotel }: any) => {
                 `+${hotel.facilities.length - 3} more`}
             </span>
           </div>
-          <div className="flex flex-col items-end gap-1">
-            <span className="font-bold text-sm">
-              ${hotel.pricePerNight} per night
-            </span>
+          <div className="flex flex-col gap-3 pt-5 md:items-end">
+            <span className="font-bold ">${hotel.pricePerNight} per night</span>
             <Link
               to={`/hotel/${hotel._id}`}
-              className="bg-blue-600 text-white rounded h-full p-2 font-bold max-w-fit hover:bg-blue-500"
+              className="w-full text-center bg-blue-600 text-white rounded h-full p-2 font-bold md:max-w-fit hover:bg-blue-500"
             >
               View More
             </Link>

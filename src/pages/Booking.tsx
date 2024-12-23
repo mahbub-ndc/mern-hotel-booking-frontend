@@ -1,16 +1,20 @@
 import { useQuery } from "react-query";
-import { fetchCurrentUser } from "../api/global-api";
-import { createPaymentIntent, viewHotelById } from "../api/hotelApi";
+import {
+  createPaymentIntent,
+  fetchCurrentUser,
+  viewHotelById,
+} from "../api/global-api";
+
 import { useParams } from "react-router-dom";
 import { BookingForm } from "../forms/BookingForm/BookingForm";
 import BookingSummary from "../components/BookingSummary";
 import { useContext, useEffect, useState } from "react";
 import { SearchContext } from "../contexts/SearchContext";
-import { AppContext } from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import { Elements } from "@stripe/react-stripe-js";
 
 const Booking = () => {
-  const { stripePromise } = useContext(AppContext) as AppContext;
+  const { stripePromise } = useAppContext();
   const { id } = useParams();
   const { data: hotel } = useQuery(["hotel", id], () =>
     viewHotelById(id as string)
@@ -50,7 +54,7 @@ const Booking = () => {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container-fluid px-5 md:container   mx-auto">
       <div className="grid md:grid-cols-[1fr_2fr] gap-10 py-5">
         <div>
           <BookingSummary

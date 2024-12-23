@@ -60,11 +60,6 @@ const router = createBrowserRouter([
         path: "/my-bookings",
         element: <MyBookings />,
       },
-
-      // {
-      //   path: "/test",
-      //   element: <TestForm />,
-      // },
     ],
   },
 ]);

@@ -10,7 +10,7 @@ const Facilities = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-3">Facilities</h2>
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
         {hotelFacilities.map((facility) => (
           <label key={facility} className=" text-sm flex text-gray-700">
             <input

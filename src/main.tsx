@@ -9,7 +9,13 @@ import { Toaster } from "sonner";
 import { AppContextProvider } from "./contexts/AppContext.tsx";
 import { SearchContextProvider } from "./contexts/SearchContext.tsx";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+    },
+  },
+});
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

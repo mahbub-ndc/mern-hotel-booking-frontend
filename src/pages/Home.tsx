@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "react-query";
-import { fetchAllHotels } from "../api/hotelApi";
+
 import { Link } from "react-router-dom";
+import { fetchAllHotels } from "../api/global-api";
 
 export const Home = () => {
   const { data: hotels, isLoading } = useQuery("hotels", fetchAllHotels);
@@ -10,7 +11,7 @@ export const Home = () => {
   }
   console.log(hotels);
   return (
-    <div className="container mx-auto mb-10">
+    <div className=" container-fluid px-5 md:container mx-auto mb-10">
       <div>
         <h1 className="text-3xl font-bold py-5">Latest Hotels</h1>
       </div>

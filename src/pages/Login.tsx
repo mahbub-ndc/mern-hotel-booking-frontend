@@ -3,7 +3,8 @@ import { useMutation, useQueryClient } from "react-query";
 
 import { toast } from "sonner";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { loginApi } from "../api/login-api";
+import { loginApi } from "../api/global-api";
+
 export type LoginFormData = {
   email: string;
   password: string;
@@ -21,7 +22,6 @@ const Login = () => {
   const location = useLocation();
 
   const mutation = useMutation(loginApi, {
-    retry: false,
     onSuccess: async () => {
       toast.success("Login successful!");
       await queryClient.invalidateQueries("validateToken");
@@ -36,6 +36,7 @@ const Login = () => {
 
   const onSubmit = handleSubmit((data) => {
     mutation.mutate(data);
+    console.log("data from login", data);
   });
 
   // watch input value by passing the name of it
@@ -43,7 +44,7 @@ const Login = () => {
   return (
     <>
       <form
-        className="container flex flex-col gap-4 w-2/3 mx-auto"
+        className="md:container container-fluid px-5 flex flex-col gap-4 md:w-2/3 w-full mx-auto"
         onSubmit={onSubmit}
       >
         <h2 className="text-3xl font-semibold py-5">Login</h2>
@@ -72,7 +73,7 @@ const Login = () => {
           <input type="submit" />
         </button>
       </form>
-      <div className="container  w-2/3 mt-5 mb-5 ">
+      <div className="md:container container-fluid px-5  md:w-2/3 w-full mt-5 mb-5 ">
         Don't have an account? Please{" "}
         <Link to={"/register"} className="text-blue-600">
           Register

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import DatePicker from "react-datepicker";
 import { SearchContext } from "../contexts/SearchContext";
 import { useForm } from "react-hook-form";
-import { AppContext } from "../contexts/AppContext";
+import { useAppContext } from "../contexts/AppContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
 type GuestFormProps = {
@@ -20,7 +20,7 @@ type GuestInfoFormData = {
 const GuestForm = ({ pricePerNight, hotelId }: GuestFormProps) => {
   console.log(pricePerNight, hotelId);
   const search = useContext(SearchContext);
-  const { isLoggedIn } = useContext(AppContext) as AppContext;
+  const { isLoggedIn } = useAppContext();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,6 +70,10 @@ const GuestForm = ({ pricePerNight, hotelId }: GuestFormProps) => {
     });
   };
 
+  const minDate = new Date();
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + 1);
+
   return (
     <form onSubmit={isLoggedIn ? handleSubmit(onSubmit) : handleSubmit(onSign)}>
       <div>
@@ -82,6 +86,8 @@ const GuestForm = ({ pricePerNight, hotelId }: GuestFormProps) => {
             selectsStart
             startDate={checkIn}
             endDate={checkOut}
+            minDate={minDate}
+            maxDate={maxDate}
             placeholderText="Check-in Date"
             className="min-w-full bg-white p-2 focus:outline-none rounded"
             wrapperClassName="min-w-full"
@@ -89,10 +95,12 @@ const GuestForm = ({ pricePerNight, hotelId }: GuestFormProps) => {
 
           <DatePicker
             selected={checkOut}
-            onChange={(date) => setValue("checkIn", date as Date)}
+            onChange={(date) => setValue("checkOut", date as Date)}
             selectsStart
             startDate={checkIn}
             endDate={checkOut}
+            minDate={minDate}
+            maxDate={maxDate}
             placeholderText="Check-in Date"
             className="min-w-full bg-white p-2 focus:outline-none rounded"
             wrapperClassName="min-w-full"

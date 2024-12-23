@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { viewHotelById } from "../api/hotelApi";
+
 import { AiFillStar } from "react-icons/ai";
 import GuestForm from "../forms/GuestForm";
+import { viewHotelById } from "../api/global-api";
 
 const HotelDetails = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const HotelDetails = () => {
   console.log(hotelData);
 
   return (
-    <div className="container mx-auto">
+    <div className=" container-fluid px-5 md:container mx-auto">
       <div className="flex gap-1 pt-5">
         {Array.from({ length: hotelData?.data?.rating }).map(() => (
           <AiFillStar className="text-yellow-500" />

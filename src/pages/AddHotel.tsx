@@ -4,7 +4,6 @@ import { useMutation } from "react-query";
 import { toast } from "sonner";
 
 import { FormProvider, useForm } from "react-hook-form";
-import { addMyHotel } from "../api/hotelApi";
 
 import FormDetails from "../forms/ManageHotelForm/FormDetails";
 
@@ -13,6 +12,7 @@ import ImageSection from "../forms/ManageHotelForm/ImageSection";
 import Guest from "../forms/ManageHotelForm/Guest";
 import Facilities from "../forms/ManageHotelForm/Facilities";
 import { useEffect } from "react";
+import { addMyHotel } from "../api/global-api";
 
 export type HotelForm = {
   _id: string;
@@ -66,7 +66,7 @@ const AddHotel = ({ hotel }: { hotel: any }) => {
 
   return (
     <FormProvider {...methods}>
-      <div className="container">
+      <div className="container-fluid px-5 md:container">
         <div className="flex flex-col gap-4 py-5">
           <form onSubmit={methods.handleSubmit(onSubmit)}>
             <FormDetails />

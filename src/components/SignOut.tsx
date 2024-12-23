@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../api/global-api";
 
 const SignOut = () => {
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation(logout, {
     onSuccess: async () => {
-      toast.success("Logout Successfully");
       await queryClient.invalidateQueries("validateToken");
+      toast.success("Logout Successfully");
+
       navigate("/login");
     },
     onError: (error: Error) => {
@@ -25,7 +26,7 @@ const SignOut = () => {
   return (
     <button
       onClick={handleClick}
-      className="text-blue-600 px-3 py-1 font-bold bg-white hover:bg-gray-100 rounded "
+      className="text-white md:bg-white md:text-blue-600  px-5 py-1 font-bold bg-blue-600 hover:bg-gray-100 hover:text-blue-600 rounded "
     >
       Sign Out
     </button>

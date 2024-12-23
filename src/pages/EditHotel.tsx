@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
-import { fetchHotelById } from "../api/hotelApi";
+
 import { useParams } from "react-router-dom";
 import AddHotel from "./AddHotel";
+import { fetchHotelById } from "../api/global-api";
 
 const EditHotel = () => {
   const { id } = useParams();

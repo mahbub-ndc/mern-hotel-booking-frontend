@@ -28,6 +28,10 @@ export const SearchBar = () => {
     navigate("/search");
   };
 
+  const minDate = new Date();
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() + 1);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -73,6 +77,8 @@ export const SearchBar = () => {
           selectsStart
           startDate={checkIn}
           endDate={checkOut}
+          minDate={minDate}
+          maxDate={maxDate}
           placeholderText="Check-in Date"
           className="min-w-full bg-white p-2 focus:outline-none rounded"
           wrapperClassName="min-w-full"
@@ -85,6 +91,8 @@ export const SearchBar = () => {
           selectsStart
           startDate={checkIn}
           endDate={checkOut}
+          minDate={minDate}
+          maxDate={maxDate}
           placeholderText="Check-out Date"
           className="min-w-full bg-white p-2 focus:outline-none rounded"
           wrapperClassName="min-w-full"

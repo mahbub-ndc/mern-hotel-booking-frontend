@@ -9,7 +9,7 @@ export const Layout = () => {
     <>
       <Navbar />
       <Header />
-      <div className="container mx-auto">
+      <div className=" container-fluid px-5 md:container mx-auto">
         <SearchBar />
       </div>
       <div className="min-h-screen">

@@ -3,12 +3,13 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import { createRoomBooking } from "../../api/hotelApi";
+
 import { toast } from "sonner";
 import { StripeCardElement } from "@stripe/stripe-js";
 import { useContext } from "react";
 import { SearchContext } from "../../contexts/SearchContext";
 import { useParams } from "react-router-dom";
+import { createRoomBooking } from "../../api/global-api";
 
 export type BookingFormData = {
   firstName: string;
@@ -30,9 +31,9 @@ export const BookingForm = ({ user, paymentIntent }: any) => {
   const { id } = useParams();
   const { register, handleSubmit } = useForm<BookingFormData>({
     defaultValues: {
-      firstName: user?.data.firstName,
-      lastName: user?.data.lastName,
-      email: user?.data.email,
+      firstName: user?.data?.firstName,
+      lastName: user?.data?.lastName,
+      email: user?.data?.email,
       adultCount: search?.adultCount,
       childCount: search?.childCount,
       checkIn: search?.checkIn.toISOString(),
@@ -82,7 +83,7 @@ export const BookingForm = ({ user, paymentIntent }: any) => {
       className="grid grid-cols-1 gap-5 rounded-lg border border-slate-300 p-5"
     >
       <span className="text-3xl font-bold">Confirm Your Details</span>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <label className="text-gray-700 text-sm font-bold flex-1">
           First Name
           <input
@@ -136,7 +137,7 @@ export const BookingForm = ({ user, paymentIntent }: any) => {
         <button
           disabled={isLoading}
           type="submit"
-          className="bg-blue-600 rounded text-white p-2 font-bold hover:bg-blue-500 text-md disabled:bg-gray-500"
+          className="w-full text-center bg-blue-600 rounded text-white p-2 font-bold hover:bg-blue-500 text-md disabled:bg-gray-500"
         >
           {isLoading ? "Saving..." : "Confirm Booking"}
         </button>
